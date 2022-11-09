@@ -12,7 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
-import {ChangeListingComponent} from "./shared/popup/changeListing.component";
+import {ChangeListingComponent} from "./data-list/popup/changeListing.component";
 
 
 @NgModule({

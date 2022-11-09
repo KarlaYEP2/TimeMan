@@ -17,8 +17,9 @@ export class ListService {
     this.listingUpdated.next(this.listings.slice())
   }
 
-  updateListing(id: number, hour: number, desc: string) {
-
+  updateListing(id: number, listings: Listing) {
+    this.listings[id] = listings
+    this.listingUpdated.next(this.listings.slice())
   }
 
   getListings() {

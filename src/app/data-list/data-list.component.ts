@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ListService} from "../list.service";
 import {Subscription} from "rxjs";
 import {Listing} from "../list.model";
@@ -12,8 +12,13 @@ import {Listing} from "../list.model";
 export class DataListComponent implements OnInit {
   arrayData:Listing[] = [];
   sub: Subscription | undefined
+  onChange: boolean | undefined
+  id!: number
+
 
   constructor(private ListService: ListService) { }
+
+
 
   ngOnInit(): void {
   this.sub = this.ListService.listingUpdated.subscribe(
@@ -28,4 +33,13 @@ export class DataListComponent implements OnInit {
   onDeleteListing(index: number) {
     this.ListService.deleteListing(index)
   }
+
+  onHandleClose() {
+    this.onChange = !this.onChange;
+  }
+
+  getId(i: number) {
+    this.id = i
+  }
+
 }

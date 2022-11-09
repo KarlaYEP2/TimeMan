@@ -1,5 +1,4 @@
 <mat-list role="list" *ngFor="let acc of arrayData; let i = index" class="container">
-
   <mat-list-item role="listitem">{{acc.hours}} {{acc.desc}}
     <button id="burgerButton" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>more_vert</mat-icon>
@@ -9,11 +8,11 @@
         <mat-icon>close</mat-icon>
         <span>Delete</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="onHandleClose(); getId(i)">
         <mat-icon>refresh</mat-icon>
-        <span>Change</span>
+        <span >Change</span>
       </button>
     </mat-menu>
   </mat-list-item>
 </mat-list>
-<!--<app-change></app-change>-->
+<app-change *ngIf="onChange" (close)="onHandleClose()" [listIndex]="id" [ogHour]="arrayData[id].hours" [ogDesc]="arrayData[id].desc" ></app-change>
