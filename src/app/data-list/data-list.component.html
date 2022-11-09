@@ -1,0 +1,19 @@
+<mat-list role="list" *ngFor="let acc of arrayData; let i = index" class="container">
+
+  <mat-list-item role="listitem">{{acc.hours}} {{acc.desc}}
+    <button id="burgerButton" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onDeleteListing(i)">
+        <mat-icon>close</mat-icon>
+        <span>Delete</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>refresh</mat-icon>
+        <span>Change</span>
+      </button>
+    </mat-menu>
+  </mat-list-item>
+</mat-list>
+<!--<app-change></app-change>-->
