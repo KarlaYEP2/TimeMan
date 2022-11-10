@@ -13,7 +13,6 @@ export class ListService {
 
   newListing(listings: Listing[]) {
     this.listings = listings
-    console.log(this.listings)
     this.listingUpdated.next(this.listings.slice())
   }
 

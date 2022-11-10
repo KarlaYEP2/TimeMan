@@ -13,6 +13,11 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {ChangeListingComponent} from "./data-list/popup/changeListing.component";
+import { TrackerComponent } from './tracker/tracker.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -20,7 +25,8 @@ import {ChangeListingComponent} from "./data-list/popup/changeListing.component"
     AppComponent,
     InputTimeComponent,
     DataListComponent,
-    ChangeListingComponent
+    ChangeListingComponent,
+    TrackerComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -30,6 +36,10 @@ import {ChangeListingComponent} from "./data-list/popup/changeListing.component"
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
   ],
   providers: [
 

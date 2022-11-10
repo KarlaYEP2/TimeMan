@@ -24,7 +24,6 @@ export class DataListComponent implements OnInit {
   this.sub = this.ListService.listingUpdated.subscribe(
     (arrayData: Listing[]) => {
       this.arrayData = arrayData
-      console.log(arrayData)
     }
   );
   this.arrayData = this.ListService.listings

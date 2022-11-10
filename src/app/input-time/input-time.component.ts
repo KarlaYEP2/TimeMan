@@ -12,12 +12,12 @@ import {Listing} from "../list.model";
 export class InputTimeComponent implements OnInit {
   arrayData:Listing[] = [];
   selected: Date | undefined;
-
+  selectedOption!: number;
+  arrayNumbers = [1,2,3,4,5,6,7,8,9,10]
   onSubmit(f: NgForm) {
     this.arrayData.push(f.value)
     this.ListService.newListing(this.arrayData)
-    console.log(this.arrayData)
-  }
+ }
 
   constructor(private ListService: ListService) {}
 
