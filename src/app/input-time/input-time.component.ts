@@ -15,8 +15,7 @@ export class InputTimeComponent implements OnInit {
   selectedOption!: number;
   arrayNumbers = [1,2,3,4,5,6,7,8,9,10]
   onSubmit(f: NgForm) {
-    this.arrayData.push(f.value)
-    this.ListService.newListing(this.arrayData)
+    this.ListService.newListing(f.value.hours,f.value.desc)
  }
 
   constructor(private ListService: ListService) {}

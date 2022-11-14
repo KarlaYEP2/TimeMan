@@ -40,6 +40,7 @@ import {MatSelectModule} from "@angular/material/select";
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    HttpClientModule
   ],
   providers: [
 

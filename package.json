@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "server.js": "nodemon server.js"
   },
   "private": true,
   "dependencies": {
@@ -21,8 +22,13 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@syncfusion/ej2-material-theme": "~20.3.56",
+    "body-parser": "^1.20.1",
     "bootstrap": "^3.4.1",
+    "debug": "^4.3.4",
+    "express": "^4.18.2",
     "hammerjs": "^2.0.8",
+    "mongoose": "^6.7.2",
+    "nodemon": "^2.0.20",
     "rxjs": "^6.6.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

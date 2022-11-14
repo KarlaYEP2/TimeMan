@@ -21,12 +21,12 @@ export class DataListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.ListService.getListings()
   this.sub = this.ListService.listingUpdated.subscribe(
     (arrayData: Listing[]) => {
       this.arrayData = arrayData
     }
   );
-  this.arrayData = this.ListService.listings
   }
 
   onDeleteListing(index: number) {
