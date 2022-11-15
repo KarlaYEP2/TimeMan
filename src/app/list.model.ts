@@ -1,9 +1,9 @@
 export class Listing {
-  public id: null
+  public id: string
   public hours: number
   public desc: string
 
-  constructor(id: null, hours: number, desc:string) {
+  constructor(id: string, hours: number, desc:string) {
     this.id = id
     this.hours = hours
     this.desc = desc

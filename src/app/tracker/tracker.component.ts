@@ -20,14 +20,16 @@ export class TrackerComponent implements OnInit {
     this.sub = this.listService.listingUpdated.subscribe(
       (arrayData: Listing[]) => {
         this.listData = arrayData
-        console.log(this.listData)
         //This function is redundant and there needs to be a better way to present it
         this.hoursSpent = this.listData.reduce((accumulator, obj) => {
           return accumulator + Number(obj.hours);
         }, 0)
       }
     );
-    this.listData = this.listService.listings
+    this.listService.updateListingListener()
+      .subscribe((data) => {
+      this.listData = data
+    })
   this.getTotal()
   }
 

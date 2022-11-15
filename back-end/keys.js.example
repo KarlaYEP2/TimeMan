@@ -1,0 +1,12 @@
+const mongoose = require('mongoose')
+const express = require("express");
+const keys = express()
+
+
+mongoose.connect('<MongoAtlas Cluster URL>').then(() => {
+  console.log('Connected to DB')
+}).catch(() => {
+  console.log('Connection failed')
+})
+
+module.exports = keys

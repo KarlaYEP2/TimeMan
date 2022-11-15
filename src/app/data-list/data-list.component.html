@@ -4,11 +4,11 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="onDeleteListing(i)">
+      <button mat-menu-item (click)="onDeleteListing(acc.id)">
         <mat-icon>close</mat-icon>
         <span>Delete</span>
       </button>
-      <button mat-menu-item (click)="onHandleClose(); getId(i)">
+      <button mat-menu-item (click)="onHandleClose()">
         <mat-icon>refresh</mat-icon>
         <span >Change</span>
       </button>

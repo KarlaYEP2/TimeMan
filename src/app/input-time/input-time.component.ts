@@ -9,19 +9,20 @@ import {Listing} from "../list.model";
   styleUrls: ['./input-time.component.css'],
   providers: []
 })
-export class InputTimeComponent implements OnInit {
-  arrayData:Listing[] = [];
+export class InputTimeComponent {
   selected: Date | undefined;
   selectedOption!: number;
   arrayNumbers = [1,2,3,4,5,6,7,8,9,10]
   onSubmit(f: NgForm) {
+    if (f.invalid) {
+      return;
+    }
     this.ListService.newListing(f.value.hours,f.value.desc)
+    f.resetForm()
  }
 
   constructor(private ListService: ListService) {}
 
-  ngOnInit(): void {
-    this.arrayData = this.ListService.listings
-  }
+
 
 }

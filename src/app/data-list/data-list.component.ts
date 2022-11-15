@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ListService} from "../list.service";
 import {Subscription} from "rxjs";
 import {Listing} from "../list.model";
@@ -9,7 +9,7 @@ import {Listing} from "../list.model";
   styleUrls: ['./data-list.component.css'],
   providers: []
 })
-export class DataListComponent implements OnInit {
+export class DataListComponent implements OnInit, OnDestroy {
   arrayData:Listing[] = [];
   sub: Subscription | undefined
   onChange: boolean | undefined
@@ -20,25 +20,25 @@ export class DataListComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.ListService.getListings()
-  this.sub = this.ListService.listingUpdated.subscribe(
+    this.sub = this.ListService.updateListingListener().subscribe(
     (arrayData: Listing[]) => {
       this.arrayData = arrayData
     }
   );
   }
 
-  onDeleteListing(index: number) {
-    this.ListService.deleteListing(index)
+
+  onDeleteListing(id: string) {
+    this.ListService.deleteListing(id)
   }
 
   onHandleClose() {
     this.onChange = !this.onChange;
   }
 
-  getId(i: number) {
-    this.id = i
+  ngOnDestroy() {
+    this.sub?.unsubscribe()
   }
-
 }
