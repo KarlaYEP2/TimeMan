@@ -13,13 +13,13 @@ export class ChangeListingComponent {
   constructor(private ListService: ListService) {
   }
 
-  @Input() listIndex!: number
+  @Input() dataId!: string
   @Input() ogHour!: number
   @Input() ogDesc!: string
 
   @Output() close = new EventEmitter<void>()
   onSubmit(f: NgForm) {
-    this.ListService.updateListing(this.listIndex, f.value)
+    this.ListService.updateListing(this.dataId, Number(f.value.hours) ,f.value.desc)
     this.close.emit()
 
 

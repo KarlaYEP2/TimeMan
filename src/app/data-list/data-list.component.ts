@@ -13,7 +13,7 @@ export class DataListComponent implements OnInit, OnDestroy {
   arrayData:Listing[] = [];
   sub: Subscription | undefined
   onChange: boolean | undefined
-  id!: number
+  i!: number
 
 
   constructor(private ListService: ListService) { }
@@ -40,5 +40,8 @@ export class DataListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub?.unsubscribe()
+  }
+  getId(i: number) {
+    this.i = i
   }
 }

@@ -13,7 +13,7 @@ app.use(bodyparser.json())
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-headers', 'Origin, X-Requested-With, Content-type, Accept')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS, PUT')
   next()
 })
 
@@ -40,11 +40,29 @@ app.get('/api/entries', (req, res, next) => {
   })
 })
 
-
 app.delete('/api/entries/:id', (req, res, next) => {
   Entry.deleteOne({_id: req.params.id}).then((result) => {
   })
   res.status(200).json({message: 'Entry removed'})
 })
+
+app.patch('/api/entries/:id', async (req, res, next) => {
+    const hours = req.body.hours
+    const desc = req.body.desc
+    await Entry.findByIdAndUpdate(req.body.listId, {desc, hours}, {new: true}).then(
+      (changes) => {
+        res.status(200).json({
+          hours: changes.hours,
+          desc: changes.desc,
+          id: req.body.listId,
+
+        })
+      }
+    )
+    // changes.save().then((changedEntry) => {
+    //   console.log(changedEntry)
+    //   res.status(200).json({message: 'Entry changed'})
+  }
+)
 
 module.exports = app

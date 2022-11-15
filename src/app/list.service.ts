@@ -25,10 +25,10 @@ export class ListService {
 
   }
 
-  updateListing(id: number, listings: Listing) {
-    this.listings[id] = listings
-    this.listingUpdated.next(this.listings.slice())
-  }
+  // updateListing(id: number, listings: Listing) {
+  //   this.listings[id] = listings
+  //   this.listingUpdated.next(this.listings.slice())
+  // }
 
   updateListingListener() {
     this.getListings()
@@ -58,10 +58,23 @@ export class ListService {
   //   this.listingUpdated.next(this.listings.slice())
   // }
 
+  updateListing(listId: string, hours: number, desc: string) {
+      this.http.patch<{ id: string, hours: number, desc: string }>("http://localhost:3000/api/entries/" + listId, {listId,hours, desc})
+        .subscribe((data) => {
+          const i = this.listings.map(function (e) {
+            return e.id;
+          }).indexOf(listId);
+          this.listings[i] = data
+          this.listingUpdated.next([...this.listings])
+    })
+  }
+
+
   deleteListing(listId: string) {
     this.http.delete("http://localhost:3000/api/entries/" + listId)
       .subscribe(() => {
         this.listings = this.listings.filter(list => list.id !== listId)
+        console.log(this.listings = this.listings.filter(list => list.id !== listId))
         this.listingUpdated.next([...this.listings])
       })
   }
