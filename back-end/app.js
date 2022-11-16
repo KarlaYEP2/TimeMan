@@ -21,7 +21,8 @@ app.post('/api/entries', (req, res, next) => {
 
   const entries = new Entry({
     hours: req.body.hours,
-    desc: req.body.desc
+    desc: req.body.desc,
+    date: req.body.date
   })
   entries.save().then(createdEntry => {
     res.status(201).json({
@@ -59,9 +60,6 @@ app.patch('/api/entries/:id', async (req, res, next) => {
         })
       }
     )
-    // changes.save().then((changedEntry) => {
-    //   console.log(changedEntry)
-    //   res.status(200).json({message: 'Entry changed'})
   }
 )
 

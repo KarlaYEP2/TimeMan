@@ -14,8 +14,8 @@ export class ListService {
   listingUpdated = new Subject<Listing[]>();
   private string = '';
 
-  newListing(hours: number, desc: string) {
-    const listing: Listing = {id: this.string, hours: hours, desc: desc}
+  newListing(hours: number, desc: string, date: Date) {
+    const listing: Listing = {id: this.string, hours: hours, desc: desc, date: date}
     this.http.post<{ message: string, entryId: string }>('http://localhost:3000/api/entries', listing)
       .subscribe((responseData) => {
         listing.id = responseData.entryId
@@ -39,10 +39,12 @@ export class ListService {
     this.http.get<{ message: string, entries: any }>('http://localhost:3000/api/entries'
     )
       .pipe(map((entryData) => {
-        return entryData.entries.map((entry: { hours: any; desc: any; _id: any; }) => {
+        console.log(entryData)
+        return entryData.entries.map((entry: { hours: any; desc: any; _id: any; date: any; }) => {
           return {
             hours: entry.hours,
             desc: entry.desc,
+            date: entry.date,
             id: entry._id
           }
         })
@@ -59,7 +61,7 @@ export class ListService {
   // }
 
   updateListing(listId: string, hours: number, desc: string) {
-      this.http.patch<{ id: string, hours: number, desc: string }>("http://localhost:3000/api/entries/" + listId, {listId,hours, desc})
+      this.http.patch<{ id: string, hours: number, desc: string, date: Date }>("http://localhost:3000/api/entries/" + listId, {listId,hours, desc})
         .subscribe((data) => {
           const i = this.listings.map(function (e) {
             return e.id;
@@ -74,7 +76,6 @@ export class ListService {
     this.http.delete("http://localhost:3000/api/entries/" + listId)
       .subscribe(() => {
         this.listings = this.listings.filter(list => list.id !== listId)
-        console.log(this.listings = this.listings.filter(list => list.id !== listId))
         this.listingUpdated.next([...this.listings])
       })
   }
