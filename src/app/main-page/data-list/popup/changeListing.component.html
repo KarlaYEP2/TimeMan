@@ -5,8 +5,9 @@
     <div id="user-data">
       <div class="form-group">
         <label for="hours">Hours worked</label>
-        <input type="text" id="hours" class="form-control" ngModel name="hours" required #hoursSpent="ngModel" [(ngModel)]="ogHour">
-        <span class="help-block" *ngIf="!hoursSpent.valid && hoursSpent.touched">Insert Hours Worked</span>
+        <select class="form-control" id="hours" required  ngModel [ngModel]="1" name="hours">
+          <option *ngFor="let hours of arrayNumbers" [value]="hours">{{hours}}</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="desc">Description</label>
@@ -18,5 +19,4 @@
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
   </form>
-<!--  <div class="alert-box-actions"><button class="btn btn-primary">Close</button></div>-->
 </div>
