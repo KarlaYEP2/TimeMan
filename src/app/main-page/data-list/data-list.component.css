@@ -1,3 +1,18 @@
 .mat-list-item {
   color:black;
 }
+li {
+list-style: none;
+}
+
+p {
+  max-width: 96%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display:inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+button {
+}
