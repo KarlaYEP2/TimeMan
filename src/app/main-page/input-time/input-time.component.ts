@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {ListService} from "../list.service";
-import {Listing} from "../list.model";
+import {ListService} from "../../list.service";
+import {Listing} from "../../list.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-input-time',
@@ -21,7 +22,11 @@ export class InputTimeComponent {
     f.resetForm()
  }
 
-  constructor(private ListService: ListService) {}
+  onNavigate() {
+    this.router.navigate(['list'])
+  }
+
+  constructor(private ListService: ListService, private router: Router) {}
 
 
 

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ListService} from "../list.service";
-import {Listing} from "../list.model";
+import {ListService} from "../../list.service";
+import {Listing} from "../../list.model";
 import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-tracker',
-  templateUrl: './tracker.component.html',
-  styleUrls: ['./tracker.component.css']
+  templateUrl: '/tracker.component.html',
+  styleUrls: ['/tracker.component.css']
 })
 export class TrackerComponent implements OnInit {
   listData:Listing[] = [];

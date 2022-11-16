@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {NgForm} from "@angular/forms";
-import {ListService} from "../../list.service";
+import {ListService} from "../../../list.service";
 
 @Component({
   selector: 'app-change',

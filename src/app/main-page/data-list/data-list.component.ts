@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {ListService} from "../list.service";
+import {ListService} from "../../list.service";
 import {Subscription} from "rxjs";
-import {Listing} from "../list.model";
+import {Listing} from "../../list.model";
 
 @Component({
   selector: 'app-data-list',

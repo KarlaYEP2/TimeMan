@@ -1,16 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-
       <div class="form-group">
         <label for="hours">Hero Power</label>
         <select class="form-control" id="hours" required  ngModel [ngModel]="1" name="hours">
           <option *ngFor="let hours of arrayNumbers" [value]="hours">{{hours}}</option>
         </select>
       </div>
-
         <div id="user-data">
           <div class="form-group">
             <label for="desc">Description</label>
@@ -22,6 +19,7 @@
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
       </form>
+      <button class="btn-primary btn" (click)="onNavigate()">List Overview</button>
     </div>
   </div>
 </div>
