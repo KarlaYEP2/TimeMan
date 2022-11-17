@@ -5,7 +5,7 @@ import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-tracker',
-  templateUrl: '/tracker.component.html',
+  templateUrl: './tracker.component.html',
   styleUrls: ['/tracker.component.css']
 })
 export class TrackerComponent implements OnInit {

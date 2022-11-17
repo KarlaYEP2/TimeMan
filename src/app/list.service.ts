@@ -39,7 +39,6 @@ export class ListService {
     this.http.get<{ message: string, entries: any }>('http://localhost:3000/api/entries'
     )
       .pipe(map((entryData) => {
-        console.log(entryData)
         return entryData.entries.map((entry: { hours: any; desc: any; _id: any; date: any; }) => {
           return {
             hours: entry.hours,
@@ -50,6 +49,15 @@ export class ListService {
         })
       }))
       .subscribe((entryData) => {
+        console.log(entryData)
+        entryData.sort((a: { date: string; }, b: { date: string; }) => {
+          const dt1 = Date.parse(a.date);
+          const dt2 = Date.parse(b.date);
+          if (dt1 < dt2) return -1;
+          if (dt1 > dt2) return 1;
+          return 0;
+        });
+
         this.listings = entryData
         this.listingUpdated.next([...this.listings])
       })
@@ -61,14 +69,18 @@ export class ListService {
   // }
 
   updateListing(listId: string, hours: number, desc: string) {
-      this.http.patch<{ id: string, hours: number, desc: string, date: Date }>("http://localhost:3000/api/entries/" + listId, {listId,hours, desc})
-        .subscribe((data) => {
-          const i = this.listings.map(function (e) {
-            return e.id;
-          }).indexOf(listId);
-          this.listings[i] = data
-          this.listingUpdated.next([...this.listings])
+    this.http.patch<{ id: string, hours: number, desc: string, date: Date }>("http://localhost:3000/api/entries/" + listId, {
+      listId,
+      hours,
+      desc
     })
+      .subscribe((data) => {
+        const i = this.listings.map(function (e) {
+          return e.id;
+        }).indexOf(listId);
+        this.listings[i] = data
+        this.listingUpdated.next([...this.listings])
+      })
   }
 
 
