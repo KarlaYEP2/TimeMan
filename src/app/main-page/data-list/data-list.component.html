@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="list-group px-0">
       <li class="list-group-item" *ngFor="let acc of arrayData; let i = index">
-        <p>{{acc.hours}} {{acc.desc}} </p><p><small>{{acc.date}}</small></p>
+        <span class="badge">{{acc.hours}}</span><p> {{acc.desc | lowercase | titlecase}} </p><p><small>{{acc.date | date }}</small></p>
         <button id="burgerButton" mat-icon-button [matMenuTriggerFor]="menu"
                 aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>

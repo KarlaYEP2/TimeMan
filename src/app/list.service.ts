@@ -25,11 +25,6 @@ export class ListService {
 
   }
 
-  // updateListing(id: number, listings: Listing) {
-  //   this.listings[id] = listings
-  //   this.listingUpdated.next(this.listings.slice())
-  // }
-
   updateListingListener() {
     this.getListings()
     return this.listingUpdated.asObservable()
@@ -49,7 +44,6 @@ export class ListService {
         })
       }))
       .subscribe((entryData) => {
-        console.log(entryData)
         entryData.sort((a: { date: string; }, b: { date: string; }) => {
           const dt1 = Date.parse(a.date);
           const dt2 = Date.parse(b.date);
@@ -62,11 +56,6 @@ export class ListService {
         this.listingUpdated.next([...this.listings])
       })
   }
-
-  // deleteListing(index: number) {
-  //   this.listings.splice(index, 1);
-  //   this.listingUpdated.next(this.listings.slice())
-  // }
 
   updateListing(listId: string, hours: number, desc: string) {
     this.http.patch<{ id: string, hours: number, desc: string, date: Date }>("http://localhost:3000/api/entries/" + listId, {

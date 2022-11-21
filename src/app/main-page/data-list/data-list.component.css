@@ -17,3 +17,7 @@ p {
 button {
 
 }
+.badge {
+  color: white;
+  background: #4a6eff;
+}

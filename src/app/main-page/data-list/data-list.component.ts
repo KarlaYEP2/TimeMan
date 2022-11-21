@@ -15,15 +15,19 @@ export class DataListComponent implements OnInit, OnDestroy {
   onChange: boolean | undefined
   i!: number
 
-
   constructor(private ListService: ListService) { }
-
-
 
   ngOnInit() {
     this.ListService.getListings()
     this.sub = this.ListService.updateListingListener().subscribe(
     (arrayData: Listing[]) => {
+      arrayData.sort((a: { date: any; }, b: { date: any; }) => {
+        const dt1 = Date.parse(a.date);
+        const dt2 = Date.parse(b.date);
+        if (dt1 < dt2) return -1;
+        if (dt1 > dt2) return 1;
+        return 0;
+      });
       this.arrayData = arrayData
     }
   );
