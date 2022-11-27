@@ -20,6 +20,7 @@ export class MainPageComponent implements OnInit {
     this.name = this.route.snapshot.params['name']
     this.project = this.projectService.getProjectName(name)
     this.route.params.subscribe(
+      // takes name data from project service and compares it with the URL
       (params: Params) => {
         console.log(params['name'])
         this.project = this.projectService.getProjectName(params['name'])

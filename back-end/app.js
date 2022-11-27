@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyparser = require('body-parser')
 const mongoose = require('mongoose')
-const db = require('./keys'); // I keep my key in a separate file in the way shown in the video
+const db = require('./keys'); // MongoDB connection key
 const app = express()
 
 const Entry = require('./models/entry')

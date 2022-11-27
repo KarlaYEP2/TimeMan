@@ -22,6 +22,7 @@ export class DataListComponent implements OnInit, OnDestroy {
     const projectId = (this.projectId)
     this.ListService.getListings()
     this.sub = this.ListService.updateListingListener().subscribe(
+      // Date sort function
     (arrayData: Listing[]) => {
       arrayData.sort((a: { date: any; }, b: { date: any; }) => {
         const dt1 = Date.parse(a.date);
@@ -31,6 +32,7 @@ export class DataListComponent implements OnInit, OnDestroy {
         return 0;
       });
       this.arrayData = arrayData // arrayData is sorted data by date
+      // check to see if projectId are the same in the list
       this.arrayData = this.arrayData.filter(function( obj ) {
         return obj.projectId == projectId
       });
@@ -50,7 +52,8 @@ export class DataListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub?.unsubscribe()
   }
-  getId(i: number) {
+
+  getId(i: number) { // index tracker for popup inorder to edit specific list values
     this.i = i
   }
 }
