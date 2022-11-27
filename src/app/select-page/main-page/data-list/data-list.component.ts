@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {ListService} from "../../list.service";
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ListService} from "../../../list.service";
 import {Subscription} from "rxjs";
-import {Listing} from "../../list.model";
+import {Listing} from "../../../models/list.model";
 
 @Component({
   selector: 'app-data-list',
@@ -14,10 +14,12 @@ export class DataListComponent implements OnInit, OnDestroy {
   sub: Subscription | undefined
   onChange: boolean | undefined
   i!: number
+  @Input() projectId: string
 
   constructor(private ListService: ListService) { }
 
   ngOnInit() {
+    const projectId = (this.projectId)
     this.ListService.getListings()
     this.sub = this.ListService.updateListingListener().subscribe(
     (arrayData: Listing[]) => {
@@ -28,7 +30,10 @@ export class DataListComponent implements OnInit, OnDestroy {
         if (dt1 > dt2) return 1;
         return 0;
       });
-      this.arrayData = arrayData
+      this.arrayData = arrayData // arrayData is sorted data by date
+      this.arrayData = this.arrayData.filter(function( obj ) {
+        return obj.projectId == projectId
+      });
     }
   );
   }

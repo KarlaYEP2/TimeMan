@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs";
-import {Listing} from "./list.model";
+import {Listing} from "./models/list.model";
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 
@@ -14,8 +14,8 @@ export class ListService {
   listingUpdated = new Subject<Listing[]>();
   private string = '';
 
-  newListing(hours: number, desc: string, date: Date) {
-    const listing: Listing = {id: this.string, hours: hours, desc: desc, date: date}
+  newListing(hours: number, desc: string, date: Date, projectId: string) {
+    const listing: Listing = {id: this.string, hours: hours, desc: desc, date: date, projectId: projectId}
     this.http.post<{ message: string, entryId: string }>('http://localhost:3000/api/entries', listing)
       .subscribe((responseData) => {
         listing.id = responseData.entryId
@@ -34,11 +34,12 @@ export class ListService {
     this.http.get<{ message: string, entries: any }>('http://localhost:3000/api/entries'
     )
       .pipe(map((entryData) => {
-        return entryData.entries.map((entry: { hours: any; desc: any; _id: any; date: any; }) => {
+        return entryData.entries.map((entry: { hours: any; desc: any; _id: any; date: any; projectId: any; }) => {
           return {
             hours: entry.hours,
             desc: entry.desc,
             date: entry.date,
+            projectId: entry.projectId,
             id: entry._id
           }
         })
@@ -58,7 +59,7 @@ export class ListService {
   }
 
   updateListing(listId: string, hours: number, desc: string) {
-    this.http.patch<{ id: string, hours: number, desc: string, date: Date }>("http://localhost:3000/api/entries/" + listId, {
+    this.http.patch<{ id: string, hours: number, desc: string, date: Date, projectId: string }>("http://localhost:3000/api/entries/" + listId, {
       listId,
       hours,
       desc

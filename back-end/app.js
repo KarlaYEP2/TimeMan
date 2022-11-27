@@ -5,6 +5,7 @@ const db = require('./keys'); // I keep my key in a separate file in the way sho
 const app = express()
 
 const Entry = require('./models/entry')
+const Project = require('./models/project')
 
 db // MongoDB connection
 
@@ -17,14 +18,18 @@ app.use((req, res, next) => {
   next()
 })
 
+
+
 app.post('/api/entries', (req, res, next) => {
 
   const entries = new Entry({
     hours: req.body.hours,
     desc: req.body.desc,
-    date: req.body.date
+    date: req.body.date,
+    projectId: req.body.projectId
   })
   entries.save().then(createdEntry => {
+    console.log(createdEntry)
     res.status(201).json({
       message: 'new entry was made',
       entryId: createdEntry._id
@@ -62,5 +67,29 @@ app.patch('/api/entries/:id', async (req, res, next) => {
     )
   }
 )
+
+
+app.post('/api/projects', (req, res, next) => {
+
+  const projects = new Project({
+    name: req.body.name,
+    maxHour: req.body.maxHour
+  })
+  projects.save().then(createdProject => {
+    console.log(createdProject)
+    res.status(201).json({
+      message: 'new project was made'
+    })
+  })
+})
+
+app.get('/api/projects', (req, res, next) => {
+  Project.find().then(documents => {
+    res.status(200).json({
+      message: 'entries send',
+      project: documents
+    })
+  })
+})
 
 module.exports = app

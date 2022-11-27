@@ -1,13 +1,15 @@
 import {RouterModule, Routes} from "@angular/router";
-import {MainPageComponent} from "./main-page/main-page.component";
-import {DataListComponent} from "./main-page/data-list/data-list.component";
+import {MainPageComponent} from "./select-page/main-page/main-page.component";
+import {DataListComponent} from "./select-page/main-page/data-list/data-list.component";
 import {NgModule} from "@angular/core";
+import {SelectPageComponent} from "./select-page/select-page.component";
 
 const appRoutes: Routes = [
-    {path: '', component: MainPageComponent},
-    {path: 'list', component: DataListComponent},
-    {path: '**', component: MainPageComponent},
-  ]
+  {path: 'projects', component: SelectPageComponent},
+  {path: 'projects/:name', component: MainPageComponent},
+  {path: 'list', component: DataListComponent},
+  {path: '**', component: SelectPageComponent},
+]
 
 @NgModule({
   imports: [
@@ -19,7 +21,6 @@ const appRoutes: Routes = [
 
 })
 export class AppRoutingModule {
-
 
 
 }

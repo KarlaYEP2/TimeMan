@@ -1,0 +1,3 @@
+<button *ngFor="let project of projectList" href="#" [routerLink]="['/projects', project.name]" >{{project.name}}</button>
+<button href="#" [routerLink]="['/projects', 'cock']" >cock}</button>
+<button (click)=" newProject()">Select 2</button>

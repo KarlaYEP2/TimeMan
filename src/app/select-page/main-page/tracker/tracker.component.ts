@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ListService} from "../../list.service";
-import {Listing} from "../../list.model";
+import {Component, Input, OnInit} from '@angular/core';
+import {ListService} from "../../../list.service";
+import {Listing} from "../../../models/list.model";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -9,10 +9,11 @@ import {Subscription} from "rxjs";
   styleUrls: ['/tracker.component.css']
 })
 export class TrackerComponent implements OnInit {
+
   listData:Listing[] = [];
   sub: Subscription | undefined
 
-  hoursMax = 730;
+  @Input()hoursMax!: number
   hoursSpent!: number
   constructor(private listService:ListService) { }
 
