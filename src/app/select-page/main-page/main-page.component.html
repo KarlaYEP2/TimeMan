@@ -1,6 +1,6 @@
 <p class="project">{{name}}</p>
 <div class="row">
   <app-input-time class="col-xs-12 col-md-8" [projectId]="name" ></app-input-time>
-  <app-tracker [hoursMax]="project.maxHour" class="col-xs-6 col-md-3"></app-tracker>
+  <app-tracker [hoursMax]="project.maxHour"  [projectId]="name"class="col-xs-6 col-md-3"></app-tracker>
 </div>
   <app-data-list class="align-middle" [projectId]="name"></app-data-list>
