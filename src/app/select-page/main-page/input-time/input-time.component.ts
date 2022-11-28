@@ -22,10 +22,6 @@ export class InputTimeComponent {
     f.resetForm()
  }
 
-  onNavigate() {
-    this.router.navigate(['list'])
-  }
-
   constructor(private ListService: ListService, private router: Router, private route: ActivatedRoute) {}
 
 

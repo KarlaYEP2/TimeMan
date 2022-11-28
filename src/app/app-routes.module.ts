@@ -5,9 +5,8 @@ import {NgModule} from "@angular/core";
 import {SelectPageComponent} from "./select-page/select-page.component";
 
 const appRoutes: Routes = [
-  {path: 'projects', component: SelectPageComponent},
-  {path: 'projects/:name', component: MainPageComponent},
-  {path: 'list', component: DataListComponent},
+  {path: '', component: SelectPageComponent},
+  {path: ':name', component: MainPageComponent},
   {path: '**', component: SelectPageComponent},
 ]
 

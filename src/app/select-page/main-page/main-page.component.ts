@@ -25,7 +25,7 @@ export class MainPageComponent implements OnInit {
         console.log(params['name'])
         this.project = this.projectService.getProjectName(params['name'])
         if (!this.project) {
-          this.router.navigate(['projects']);
+          this.router.navigate(['']);
         }
       }
     )
