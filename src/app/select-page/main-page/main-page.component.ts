@@ -29,6 +29,5 @@ export class MainPageComponent implements OnInit {
         }
       }
     )
-    console.log(this.project.maxHour)
   }
 }

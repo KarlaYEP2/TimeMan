@@ -24,6 +24,8 @@ export class DataListComponent implements OnInit, OnDestroy {
     this.sub = this.ListService.updateListingListener().subscribe(
       // Date sort function
     (arrayData: Listing[]) => {
+      console.log('cocks')
+      console.log(arrayData)
       arrayData.sort((a: { date: any; }, b: { date: any; }) => {
         const dt1 = Date.parse(a.date);
         const dt2 = Date.parse(b.date);
@@ -36,6 +38,9 @@ export class DataListComponent implements OnInit, OnDestroy {
       this.arrayData = this.arrayData.filter(function( obj ) {
         return obj.projectId == projectId
       });
+      console.log(this.arrayData)
+      console.log('the occk')
+
     }
   );
   }

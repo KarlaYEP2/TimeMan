@@ -58,11 +58,13 @@ export class ListService {
       })
   }
 
-  updateListing(listId: string, hours: number, desc: string) {
+  updateListing(listId: string, hours: number, desc: string, projectId: string, date: Date) {
     this.http.patch<{ id: string, hours: number, desc: string, date: Date, projectId: string }>("http://localhost:3000/api/entries/" + listId, {
       listId,
       hours,
-      desc
+      desc,
+      projectId,
+      date
     })
       .subscribe((data) => {
         const i = this.listings.map(function (e) {

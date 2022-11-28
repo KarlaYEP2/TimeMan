@@ -61,6 +61,8 @@ app.patch('/api/entries/:id', async (req, res, next) => {
           hours: changes.hours,
           desc: changes.desc,
           id: req.body.listId,
+          projectId: req.body.projectId,
+          date: req.body.date
 
         })
       }
