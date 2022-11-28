@@ -21,6 +21,7 @@ export class ChangeListingComponent {
   @Input() ogDate!: Date
 
   @Output() close = new EventEmitter<void>()
+
   onSubmit(f: NgForm) {
     this.ListService.updateListing(this.dataId, Number(f.value.hours) ,f.value.desc, this.projectId, this.ogDate)
     this.close.emit()

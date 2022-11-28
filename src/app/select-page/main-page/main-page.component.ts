@@ -22,7 +22,6 @@ export class MainPageComponent implements OnInit {
     this.route.params.subscribe(
       // takes name data from project service and compares it with the URL
       (params: Params) => {
-        console.log(params['name'])
         this.project = this.projectService.getProjectName(params['name'])
         if (!this.project) {
           this.router.navigate(['']);

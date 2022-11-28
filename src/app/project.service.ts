@@ -16,7 +16,6 @@ export class ProjectService {
   projectUpdated = new Subject<Project[]>();
 
   updateProjectListener() {
-    console.log('trig')
     this.getProjects()
     return this.projectUpdated.asObservable()
   }
@@ -25,6 +24,10 @@ export class ProjectService {
     const project: Project = {id: this.string, name: name, maxHour: maxHour}
     this.http.post<{ message: string }>('http://localhost:3000/api/projects', project)
       .subscribe((responseData) => {
+        this.projects.push(project);
+        this.projectUpdated.next([...this.projects]);
+      }, error => {
+        console.log(error)
       })
   }
 

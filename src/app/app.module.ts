@@ -6,7 +6,7 @@ import { InputTimeComponent } from './select-page/main-page/input-time/input-tim
 import { DataListComponent } from './select-page/main-page/data-list/data-list.component';
 import {MatListModule} from "@angular/material/list";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
@@ -20,7 +20,10 @@ import {MainPageComponent} from "./select-page/main-page/main-page.component";
 import {AppRoutingModule} from "./app-routes.module";
 import {StringDateFormatPipe} from "./shared/stringDateFormat.pipe";
 import { SelectPageComponent } from './select-page/select-page.component';
-
+import {CreateNewProjectComponent} from "./select-page/create-new-project/create-new-project.component";
+import {ErrorInterceptor} from "./error-interceptor";
+import {MatDialogModule} from "@angular/material/dialog";
+import {ErrorComponent} from "./error/error.component";
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { SelectPageComponent } from './select-page/select-page.component';
     TrackerComponent,
     MainPageComponent,
     StringDateFormatPipe,
-    SelectPageComponent
+    SelectPageComponent,
+    CreateNewProjectComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -47,10 +52,14 @@ import { SelectPageComponent } from './select-page/select-page.component';
     MatInputModule,
     MatSelectModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
+
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

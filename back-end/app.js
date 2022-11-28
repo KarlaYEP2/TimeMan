@@ -29,7 +29,6 @@ app.post('/api/entries', (req, res, next) => {
     projectId: req.body.projectId
   })
   entries.save().then(createdEntry => {
-    console.log(createdEntry)
     res.status(201).json({
       message: 'new entry was made',
       entryId: createdEntry._id
@@ -63,7 +62,6 @@ app.patch('/api/entries/:id', async (req, res, next) => {
           id: req.body.listId,
           projectId: req.body.projectId,
           date: req.body.date
-
         })
       }
     )
@@ -78,9 +76,13 @@ app.post('/api/projects', (req, res, next) => {
     maxHour: req.body.maxHour
   })
   projects.save().then(createdProject => {
-    console.log(createdProject)
     res.status(201).json({
-      message: 'new project was made'
+      message: 'new project was made',
+      result: createdProject
+    })
+  }).catch(err => {
+    res.status(500).json({
+      message: 'This project name is taken'
     })
   })
 })

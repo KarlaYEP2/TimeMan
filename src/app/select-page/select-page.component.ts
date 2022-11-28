@@ -13,13 +13,13 @@ import {Project} from "../models/project.model";
 export class SelectPageComponent implements OnInit, OnDestroy {
   sub!: Subscription
   projectList: Project[] = []
+  onChange!: boolean;
 
   constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.sub = this.projectService.updateProjectListener().subscribe(
       (projectData: Project[]) => {
-        console.log(projectData)
         this.projectList = projectData
       }
     )
@@ -27,12 +27,15 @@ export class SelectPageComponent implements OnInit, OnDestroy {
 
 
   newProject() {
-    console.log(this.route)
-    this.router.navigate(['/:name'], {relativeTo: this.route})
     // this.projectService.newProject('NewRUn', 213)
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
+  }
+
+  onHandleClose() {
+    this.onChange = !this.onChange;
+
   }
 }
